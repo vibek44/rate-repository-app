@@ -1,4 +1,4 @@
-//import { StatusBar } from "expo-status-bar";
+import { StatusBar } from "expo-status-bar";
 
 import { View, StyleSheet } from "react-native";
 
@@ -7,7 +7,8 @@ import RepositoryList from "./RepositoryList";
 
 const Main = () => {
   return (
-    <View>
+    <View style={{ flex: 1 }}>
+      <StatusBar style="light" />
       <AppBar />
       <RepositoryList />
     </View>
