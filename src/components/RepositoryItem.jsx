@@ -1,4 +1,5 @@
-import { View, Text } from "react-native";
+import { View } from "react-native";
+import Text from "./Text";
 
 const RepositoryItem = ({
   item: {
@@ -11,16 +12,23 @@ const RepositoryItem = ({
     reviewCount,
   },
 }) => {
+  const fields = [
+    { label: "Full name", value: fullName },
+    { label: "description", value: description },
+    { label: "language", value: language },
+    { label: "stars", value: stargazersCount },
+    { label: "forks", value: forksCount },
+    { label: "rating", value: ratingAverage },
+    { label: "review", value: reviewCount },
+  ];
   return (
-    <View>
-      <Text>Full name: {fullName}</Text>
-      <Text>Description: {description}</Text>
-      <Text>Language: {language}</Text>
-      <Text>Stars: {stargazersCount}</Text>
-      <Text>Forks: {forksCount}</Text>
-      <Text>Reviews: {reviewCount}</Text>
-      <Text>Rating: {ratingAverage}</Text>
-    </View>
+    <>
+      {fields.map((field) => (
+        <Text key={field.label}>
+          {field.label}: {field.value}
+        </Text>
+      ))}
+    </>
   );
 };
 
