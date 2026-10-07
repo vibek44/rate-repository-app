@@ -17,8 +17,6 @@ const AppBar = () => {
 const styles = StyleSheet.create({
   container: {
     paddingTop: Constants.statusBarHeight,
-    paddingLeft: 20,
-    paddingBottom: 20,
     height: 100,
     backgroundColor: "#24292e",
     justifyContent: "flex-end",
