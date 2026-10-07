@@ -1,13 +1,15 @@
 import Constants from "expo-constants";
-import { View, StyleSheet } from "react-native";
+import { View, StyleSheet, Pressable, Alert } from "react-native";
 import Text from "./Text";
 
 const AppBar = () => {
   return (
     <View style={styles.container}>
-      <Text color="primary" fontSize="subheading" fontWeight="bold">
-        Repositories
-      </Text>
+      <Pressable onPress={() => Alert.alert("Repository App")}>
+        <Text color="primary" fontSize="subheading" fontWeight="bold">
+          Repositories
+        </Text>
+      </Pressable>
     </View>
   );
 };
