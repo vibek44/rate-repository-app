@@ -1,10 +1,13 @@
 import Constants from "expo-constants";
-import { View, StyleSheet, Text } from "react-native";
+import { View, StyleSheet } from "react-native";
+import Text from "./Text";
 
 const AppBar = () => {
   return (
     <View style={styles.container}>
-      <Text>Repositories</Text>
+      <Text color="primary" fontSize="subheading" fontWeight="bold">
+        Repositories
+      </Text>
     </View>
   );
 };
@@ -12,8 +15,11 @@ const AppBar = () => {
 const styles = StyleSheet.create({
   container: {
     paddingTop: Constants.statusBarHeight,
+    paddingLeft: 20,
+    paddingBottom: 20,
     height: 100,
     backgroundColor: "#24292e",
+    justifyContent: "flex-end",
   },
 });
 
