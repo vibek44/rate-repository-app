@@ -1,14 +1,17 @@
-import { StatusBar } from "expo-status-bar";
-
 import { View, StyleSheet } from "react-native";
-
 import AppBar from "./AppBar";
 import RepositoryList from "./RepositoryList";
 
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: "#F5F5F5",
+  },
+});
+
 const Main = () => {
   return (
-    <View style={{ flex: 1 }}>
-      <StatusBar style="light" />
+    <View style={styles.container}>
       <AppBar />
       <RepositoryList />
     </View>
