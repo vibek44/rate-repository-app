@@ -37,8 +37,18 @@ const DescriptionPart = ({
       <View style={styles.descriptionContainer}>
         {fieldDescription.map((field) => (
           <Text
-            fontWeight={field.label === "FullName" && "bold"}
             key={field.label}
+            fontWeight={field.label === "FullName" && "bold"}
+            style={
+              field.label === "Language" && {
+                alignSelf: "flex-start",
+                color: "#ffffff",
+                fontSize: 16,
+                backgroundColor: "#0066FF",
+                padding: 3,
+                borderRadius: 5,
+              }
+            }
           >
             {field.value}
           </Text>
