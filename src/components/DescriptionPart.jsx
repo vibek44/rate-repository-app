@@ -44,7 +44,7 @@ const DescriptionPart = ({
                 alignSelf: "flex-start",
                 color: "#ffffff",
                 fontSize: 16,
-                backgroundColor: "#0066FF",
+                backgroundColor: "#0366d6",
                 padding: 3,
                 borderRadius: 5,
               }
