@@ -1,5 +1,6 @@
-import { View } from "react-native";
+import { View, Image, StyleSheet } from "react-native";
 import Text from "./Text";
+import DescriptionPart from "./DescriptionPart";
 
 const RepositoryItem = ({
   item: {
@@ -10,26 +11,55 @@ const RepositoryItem = ({
     stargazersCount,
     ratingAverage,
     reviewCount,
+    ownerAvatarUrl,
   },
 }) => {
-  const fields = [
-    { label: "Full name", value: fullName },
-    { label: "description", value: description },
-    { label: "language", value: language },
-    { label: "stars", value: stargazersCount },
-    { label: "forks", value: forksCount },
-    { label: "rating", value: ratingAverage },
-    { label: "review", value: reviewCount },
+  const fieldDescription = [
+    { label: "FullName", value: fullName },
+    { label: "Description", value: description },
+    { label: "Language", value: language },
   ];
+  const fieldRating = [
+    { label: "Stars", value: stargazersCount },
+    { label: "Forks", value: forksCount },
+    { label: "Rating", value: ratingAverage },
+    { label: "Reviews", value: reviewCount },
+  ];
+
   return (
     <>
-      {fields.map((field) => (
-        <Text key={field.label}>
-          {field.label}: {field.value}
-        </Text>
-      ))}
+      <DescriptionPart fields={fieldDescription} />
+      <View>
+        <View style={styles.container}>
+          {fieldRating.map((field) => (
+            <View key={field.label}>
+              <Text fontWeight="bold">{field.value}</Text>
+              <Text>{field.label}</Text>
+            </View>
+          ))}
+        </View>
+      </View>
     </>
   );
 };
+
+const styles = StyleSheet.create({
+  container: {
+    display: "flex",
+    flexDirection: "row",
+    justifyContent: "space-around",
+    columnGap: 12,
+    backgroundColor: "#ffffff",
+    padding: 10,
+  },
+  avatarWrapper: {
+    width: 32,
+    height: 32,
+  },
+  descriptionContainer: {
+    flex: 1,
+    rowGap: 8,
+  },
+});
 
 export default RepositoryItem;
