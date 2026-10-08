@@ -20,6 +20,7 @@ const styles = StyleSheet.create({
     height: 100,
     backgroundColor: "#24292e",
     justifyContent: "flex-end",
+    padding: 20,
   },
 });
 
