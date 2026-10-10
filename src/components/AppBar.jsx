@@ -23,9 +23,11 @@ const AppBar = () => {
 
 const styles = StyleSheet.create({
   container: {
+    padding: 20,
     paddingTop: Constants.statusBarHeight,
     flexDirection: "row",
-    height: 100,
+    alignItems: "flex-end",
+    height: 120,
     backgroundColor: "#24292e",
     columnGap: 10,
   },
