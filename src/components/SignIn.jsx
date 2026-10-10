@@ -1,4 +1,5 @@
 import { TextInput, View, StyleSheet, Pressable } from "react-native";
+import { useFormik } from "formik";
 
 import Text from "./Text";
 
@@ -24,11 +25,22 @@ const styles = StyleSheet.create({
   },
 });
 const SignIn = () => {
+  const formik = useFormik({
+    initialValues: { email: "", password: "" },
+  });
+  //console.log(formik);
   return (
     <View style={styles.container}>
-      <TextInput placeholder="Username" style={styles.item} />
+      <TextInput
+        placeholder="Email"
+        value={formik.values.username}
+        onChange={formik.handleChange("email")}
+        style={styles.item}
+      />
       <TextInput
         placeholder="Password"
+        value={formik.values.password}
+        onChange={formik.handleChange("password")}
         secureTextEntry={true}
         style={styles.item}
       />
@@ -42,18 +54,3 @@ const SignIn = () => {
 };
 
 export default SignIn;
-
-/*
-  buttonWrapper: {
-    margin: (16, 12),
-    borderWidth: 2,
-    height: 60,
-    borderRadius: 10,
-    justifyContent: "center",
-  },
-  item: {
-    margin: (16, 12),
-    borderWidth: 2,
-    height: 60,
-    borderRadius: 10,
-  },*/
