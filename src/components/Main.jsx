@@ -1,13 +1,14 @@
 import { View, StyleSheet } from "react-native";
 import AppBar from "./AppBar";
-import { Route, Routes, Navigate } from "react-router-native";
+import { Route, Routes } from "react-router-native";
 import RepositoryList from "./RepositoryList";
 import SignIn from "./SignIn";
+import { lightColors } from "../theme";
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#e1e4e8",
+    backgroundColor: lightColors.backgroundColorMain,
   },
 });
 
