@@ -1,28 +1,26 @@
 import { TextInput, View, StyleSheet, Pressable } from "react-native";
 import { useFormik } from "formik";
 import * as Yup from "yup";
-
 import Text from "./Text";
+import { sizing, spacing, lightColors } from "../theme";
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    padding: 16,
+    padding: spacing.md,
   },
   subContainer: {
-    marginBottom: 24,
+    marginBottom: spacing.lg,
   },
   item: {
-    height: 60,
-    borderRadius: 12,
+    height: sizing.base,
+    borderRadius: spacing.md,
     borderWidth: 2,
-    paddingHorizontal: 12,
-    marginBottom: 4,
+    paddingHorizontal: spacing.md,
   },
   buttonWrapper: {
-    height: 60,
-    backgroundColor: "#007AFF",
-    borderRadius: 12,
+    height: sizing.medium,
+    backgroundColor: lightColors.backgroundColorSignIn,
+    borderRadius: spacing.lg,
     alignItems: "center",
     justifyContent: "center",
   },
