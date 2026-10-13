@@ -1,7 +1,8 @@
 import Constants from "expo-constants";
-import { View, StyleSheet, Pressable, Alert } from "react-native";
+import { View, StyleSheet } from "react-native";
 import Text from "./Text";
 import { Link } from "react-router-native";
+import { sizing, darkColors, spacing } from "../theme";
 
 const AppBar = () => {
   return (
@@ -23,13 +24,13 @@ const AppBar = () => {
 
 const styles = StyleSheet.create({
   container: {
-    padding: 20,
+    padding: spacing.lg,
     paddingTop: Constants.statusBarHeight,
     flexDirection: "row",
     alignItems: "flex-end",
-    height: 120,
-    backgroundColor: "#24292e",
-    columnGap: 10,
+    height: sizing.large,
+    backgroundColor: darkColors.backgroundColorAppBar,
+    columnGap: spacing.lg,
   },
 });
 
