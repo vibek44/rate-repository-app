@@ -1,19 +1,20 @@
 import { View, StyleSheet } from "react-native";
 import Text from "./Text";
+import { spacing, lightColors } from "../theme";
 
 const styles = StyleSheet.create({
   container: {
     display: "flex",
     flexDirection: "row",
     justifyContent: "space-around",
-    columnGap: 12,
-    backgroundColor: "#ffffff",
-    padding: 10,
+    columnGap: spacing.md,
+    backgroundColor: lightColors.backgroundColorList,
+    padding: spacing.sm,
   },
   ratingContainer: {
     flex: 1,
     alignItems: "center",
-    rowGap: 4,
+    rowGap: spacing.sm,
   },
 });
 
