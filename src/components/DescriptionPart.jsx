@@ -1,22 +1,23 @@
 import { View, Image, StyleSheet } from "react-native";
 import Text from "./Text";
+import { lightColors, spacing, sizing, typography } from "../theme";
 
 const styles = StyleSheet.create({
   container: {
     display: "flex",
     flexDirection: "row",
     justifyContent: "space-around",
-    columnGap: 12,
-    backgroundColor: "#ffffff",
-    padding: 10,
+    columnGap: spacing.md,
+    backgroundColor: lightColors.backgroundColorList,
+    padding: spacing.sm,
   },
   avatarWrapper: {
-    width: 64,
-    height: 64,
+    width: sizing.base,
+    height: sizing.base,
   },
   descriptionContainer: {
     flex: 1,
-    rowGap: 8,
+    rowGap: spacing.md,
   },
 });
 
@@ -42,11 +43,11 @@ const DescriptionPart = ({
             style={
               field.label === "Language" && {
                 alignSelf: "flex-start",
-                color: "#ffffff",
-                fontSize: 16,
-                backgroundColor: "#0366d6",
-                padding: 3,
-                borderRadius: 5,
+                color: lightColors.textPrimary,
+                fontSize: typography.fontSizes.base,
+                backgroundColor: lightColors.colorLanguage,
+                padding: spacing.sm,
+                borderRadius: spacing.sm,
               }
             }
           >
