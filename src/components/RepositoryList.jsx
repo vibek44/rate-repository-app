@@ -1,12 +1,13 @@
 import { FlatList, View, StyleSheet, Text } from "react-native";
 import RepositoryItem from "./RepositoryItem";
+import { spacing } from "../theme";
 
 const styles = StyleSheet.create({
   separator: {
-    height: 15,
+    height: spacing.sm,
   },
   list: {
-    paddingHorizontal: 16,
+    paddingHorizontal: spacing.md,
   },
 });
 
