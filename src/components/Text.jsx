@@ -1,25 +1,25 @@
 import { Text as NativeText, StyleSheet } from "react-native";
 
-import theme from "../theme";
+import { darkColors, lightColors, typography } from "../theme";
 
 const styles = StyleSheet.create({
   text: {
-    color: theme.colors.textPrimary,
-    fontFamily: theme.fonts.main,
-    fontSize: theme.fontSizes.body,
-    fontWeight: theme.fontWeights.normal,
+    color: darkColors.textPrimary,
+    fontFamily: typography.fonts.main,
+    fontSize: typography.fontSizes.sm,
+    fontWeight: typography.fontWeights.normal,
   },
   colorTextSecondary: {
-    color: theme.colors.textSecondary,
+    color: lightColors.textSecondary,
   },
   colorPrimary: {
-    color: theme.colors.primary,
+    color: lightColors.textPrimary,
   },
   fontSizeSubHeading: {
-    fontSize: theme.fontSizes.subheading,
+    fontSize: typography.fontSizes.lg,
   },
   fontWeightBold: {
-    fontWeight: theme.fontWeights.bold,
+    fontWeight: typography.fontWeights.bold,
   },
 });
 
