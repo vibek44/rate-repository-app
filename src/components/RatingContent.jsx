@@ -32,7 +32,14 @@ const RatingContent = ({
       <View style={styles.container}>
         {fieldRating.map((field) => (
           <View key={field.label} style={styles.ratingContainer}>
-            <Text fontWeight="bold">{field.value}</Text>
+            <Text fontWeight="bold">
+              {field.value >= 1000
+                ? new Intl.NumberFormat("en-US", {
+                    notation: "compact",
+                    maximumFractionDigits: 1,
+                  }).format(field.value)
+                : field.value}
+            </Text>
             <Text>{field.label}</Text>
           </View>
         ))}
