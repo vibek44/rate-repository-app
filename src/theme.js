@@ -36,6 +36,7 @@ export const sizing = {
 export const lightColors = {
   textPrimary: "#ffffff",
   textSecondary: "#586069",
+  textAlert: "#990000",
   backgroundColorMain: "#e1e4e8",
   backgroundColorList: "#ffffff",
   backgroundColorSignIn: "#007AFF",
