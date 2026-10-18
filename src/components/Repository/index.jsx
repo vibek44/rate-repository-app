@@ -5,8 +5,8 @@ import {
   ActivityIndicator,
   Text,
 } from "react-native";
-import { useQuery } from "@apollo/client/react";
-import { GET_REPOSITORIES } from "../../graphql/queries";
+import useRepositories from "../../hooks/useRepositories";
+
 import RepositoryItem from "./RepositoryItem";
 import { spacing } from "../../theme";
 
@@ -26,7 +26,7 @@ const styles = StyleSheet.create({
 const ItemSeparator = () => <View style={styles.separator} />;
 
 const RepositoryList = () => {
-  const { data, loading, error } = useQuery(GET_REPOSITORIES);
+  const { data, loading, error } = useRepositories();
   console.log(data);
 
   const repositoryNodes = data
