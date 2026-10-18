@@ -1,7 +1,7 @@
 import { View, StyleSheet } from "react-native";
 import AppBar from "./AppBar";
 import { Route, Routes } from "react-router-native";
-import RepositoryList from "./RepositoryList";
+import RepositoryList from "./Repository/index";
 import SignIn from "./SignIn";
 import { lightColors } from "../theme";
 
