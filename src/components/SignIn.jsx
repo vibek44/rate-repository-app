@@ -37,14 +37,14 @@ const SignInSchema = Yup.object().shape({
 });
 const SignIn = () => {
   const [signIn] = useSigIn();
+
   const formik = useFormik({
     initialValues: { username: "", password: "" },
     validationSchema: SignInSchema,
     onSubmit: async (values) => {
       const { username, password } = values;
       try {
-        const { data } = await signIn({ username, password });
-        console.log(data);
+        await signIn({ username, password });
       } catch (error) {
         console.log(error);
       }
