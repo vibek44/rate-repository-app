@@ -3,6 +3,7 @@ import { useFormik } from "formik";
 import * as Yup from "yup";
 import Text from "./Text";
 import { sizing, spacing, lightColors } from "../theme";
+import useSigIn from "../hooks/useSignIn";
 
 const styles = StyleSheet.create({
   container: {
@@ -27,19 +28,26 @@ const styles = StyleSheet.create({
 });
 
 const SignInSchema = Yup.object().shape({
-  email: Yup.string()
-    .email("Please enter valid email!")
-    .required("email is required!"),
+  username: Yup.string()
+    .min(4, "Please enter valid username!")
+    .required("username is required!"),
   password: Yup.string()
     .min(6, "Password must be 6 digit long!")
     .required("password is required!"),
 });
 const SignIn = () => {
+  const [signIn] = useSigIn();
   const formik = useFormik({
-    initialValues: { email: "", password: "" },
+    initialValues: { username: "", password: "" },
     validationSchema: SignInSchema,
     onSubmit: async (values) => {
-      console.log(values);
+      const { username, password } = values;
+      try {
+        const { data } = await signIn({ username, password });
+        console.log(data);
+      } catch (error) {
+        console.log(error);
+      }
     },
   });
   //console.log(formik);
@@ -47,16 +55,16 @@ const SignIn = () => {
     <View style={styles.container}>
       <View style={styles.subContainer}>
         <TextInput
-          placeholder="Email"
+          placeholder="UserName"
           value={formik.values.username}
-          onChangeText={formik.handleChange("email")}
+          onChangeText={formik.handleChange("username")}
           style={[
             styles.item,
-            formik.errors.email && { borderColor: "#FF6347" },
+            formik.errors.username && { borderColor: "#FF6347" },
           ]}
         />
-        {formik.touched.email && formik.errors.email && (
-          <Text style={{ color: "#FF6347" }}>{formik.errors.email}</Text>
+        {formik.touched.username && formik.errors.username && (
+          <Text style={{ color: "#FF6347" }}>{formik.errors.username}</Text>
         )}
       </View>
       <View style={styles.subContainer}>
