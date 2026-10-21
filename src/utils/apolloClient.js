@@ -9,10 +9,11 @@ const createApolloClient = (authStorage) => {
   const authLink = new SetContextLink(async ({ headers }) => {
     try {
       const token = await authStorage.getAccessToken();
+      console.log(token);
       return {
         headers: {
           ...headers,
-          authorizatiion: token ? `Bearer ${token}` : "",
+          authorization: token ? `Bearer ${token}` : "",
         },
       };
     } catch (error) {
@@ -20,6 +21,7 @@ const createApolloClient = (authStorage) => {
       return { headers };
     }
   });
+
   return new ApolloClient({
     link: authLink.concat(httpLink),
     cache: new InMemoryCache(),
