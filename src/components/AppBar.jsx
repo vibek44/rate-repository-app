@@ -1,10 +1,22 @@
 import Constants from "expo-constants";
-import { View, StyleSheet } from "react-native";
+import { View, StyleSheet, Pressable } from "react-native";
+import useUser from "../hooks/useUser";
 import Text from "./Text";
 import { Link } from "react-router-native";
 import { sizing, darkColors, spacing } from "../theme";
+import AuthStorage from "../utils/authStorage";
+import { useApolloClient } from "@apollo/client/react";
+const authStorage = new AuthStorage();
 
 const AppBar = () => {
+  const client = useApolloClient();
+  const { data } = useUser();
+  const me = data?.me ?? null;
+
+  const handleLogOut = async () => {
+    await authStorage.removeAccessToken();
+    client.resetStore();
+  };
   return (
     <View style={styles.container}>
       <Link to="/">
@@ -12,12 +24,19 @@ const AppBar = () => {
           Repositories
         </Text>
       </Link>
-
-      <Link to="/signin">
-        <Text color="primary" fontSize="subheading" fontWeight="bold">
-          SignIn
-        </Text>
-      </Link>
+      {me ? (
+        <Pressable onPress={handleLogOut}>
+          <Text color="primary" fontSize="subheading" fontWeight="bold">
+            SignOut
+          </Text>
+        </Pressable>
+      ) : (
+        <Link to="/signin">
+          <Text color="primary" fontSize="subheading" fontWeight="bold">
+            SignIn
+          </Text>
+        </Link>
+      )}
     </View>
   );
 };
