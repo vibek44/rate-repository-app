@@ -2,20 +2,23 @@ import Constants from "expo-constants";
 import { View, StyleSheet, Pressable } from "react-native";
 import useUser from "../hooks/useUser";
 import Text from "./Text";
-import { Link } from "react-router-native";
+import { Link, useNavigate } from "react-router-native";
 import { sizing, darkColors, spacing } from "../theme";
 import AuthStorage from "../utils/authStorage";
 import { useApolloClient } from "@apollo/client/react";
+
 const authStorage = new AuthStorage();
 
 const AppBar = () => {
   const client = useApolloClient();
+  const navigate = useNavigate();
   const { data } = useUser();
   const me = data?.me ?? null;
 
   const handleLogOut = async () => {
     await authStorage.removeAccessToken();
-    client.resetStore();
+    client.clearStore();
+    navigate("/signin");
   };
   return (
     <View style={styles.container}>
