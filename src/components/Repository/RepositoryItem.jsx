@@ -1,3 +1,4 @@
+import { View } from "react-native";
 import DescriptionPart from "./DescriptionPart";
 import RatingContent from "./RatingContent";
 
@@ -14,7 +15,7 @@ const RepositoryItem = ({
   },
 }) => {
   return (
-    <>
+    <View testID="repositoryItem">
       <DescriptionPart
         introData={{ fullName, description, language }}
         avatarUrl={ownerAvatarUrl}
@@ -22,7 +23,7 @@ const RepositoryItem = ({
       <RatingContent
         rating={{ forksCount, stargazersCount, ratingAverage, reviewCount }}
       />
-    </>
+    </View>
   );
 };
 
