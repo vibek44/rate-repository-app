@@ -66,17 +66,56 @@ describe("RepositoryList", () => {
           },
         ],
       };
-      await render(<RepositoryListContainer repositories={repositories} />);
-
       const repositoriesCopy = repositories.edges.map((edge) => edge.node);
 
+      await render(<RepositoryListContainer repositories={repositories} />);
+
       const [items1, items2] = screen.getAllByTestId("repositoryItem");
-      const fullName = within(items1).getByText("jaredpalmer/formik");
-      const description1 = within(items1).getByText(
-        "Build forms in React, without the tears"
-      );
-      // expect(fullName1, description1).toBeOnTheScreen();
-      console.log(fullName.length);
+      repositoriesCopy.map((copy, index) => {
+        const items = index === 0 ? items1 : items2;
+        const fullName = within(items).getByText(copy.fullName);
+        const description = within(items).getByText(copy.description);
+        const language = within(items).getByText(copy.language);
+        const forksCount = within(items).getByText(
+          copy.forksCount >= 1000
+            ? new Intl.NumberFormat("en-US", {
+                notation: "compact",
+                maximumFractionDigits: 1,
+              }).format(copy.forksCount)
+            : String(copy.forksCount)
+        );
+        const stargazersCount = within(items).getByText(
+          copy.stargazersCount >= 1000
+            ? new Intl.NumberFormat("en-US", {
+                notation: "compact",
+                maximumFractionDigits: 1,
+              }).format(copy.stargazersCount)
+            : String(copy.stargazersCount)
+        );
+        const ratingAverage = within(items).getByText(
+          copy.ratingAverage >= 1000
+            ? new Intl.NumberFormat("en-US", {
+                notation: "compact",
+                maximumFractionDigits: 1,
+              }).format(copy.ratingAverage)
+            : String(copy.ratingAverage)
+        );
+        const reviewCount = within(items).getByText(
+          copy.reviewCount >= 1000
+            ? new Intl.NumberFormat("en-US", {
+                notation: "compact",
+                maximumFractionDigits: 1,
+              }).format(copy.reviewCount)
+            : String(copy.reviewCount)
+        );
+        expect(fullName).toBeOnTheScreen();
+        expect(description).toBeOnTheScreen();
+        expect(language).toBeOnTheScreen();
+        expect(forksCount).toBeOnTheScreen();
+        expect(stargazersCount).toBeOnTheScreen();
+        expect(ratingAverage).toBeOnTheScreen();
+        expect(reviewCount).toBeOnTheScreen();
+      });
     });
   });
 });
