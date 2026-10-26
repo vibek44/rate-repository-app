@@ -21,7 +21,13 @@ describe("SignIn", () => {
         "password"
       );
       await fireEvent.press(screen.getByText("SignIn"));
-      await waitFor(() => {});
+      await waitFor(() => {
+        expect(onSubmit).toHaveBeenCalledTimes(1);
+        expect(onSubmit.mock.calls[0][0]).toEqual({
+          username: "kalle",
+          password: "password",
+        });
+      });
     });
   });
 });
