@@ -1,4 +1,4 @@
-import { View, Pressable, StyleSheet } from "react-native";
+import { View, Pressable, StyleSheet, Linking } from "react-native";
 import Text from "../Text";
 import { spacing, lightColors, sizing } from "../../theme";
 
@@ -37,6 +37,10 @@ const RatingContent = ({
     { label: "Rating", value: ratingAverage },
     { label: "Reviews", value: reviewCount },
   ];
+
+  const handleUrlPress = () => {
+    Linking.openURL(url);
+  };
   return (
     <View style={styles.mainContainer}>
       <View style={styles.container}>
@@ -55,7 +59,7 @@ const RatingContent = ({
         ))}
       </View>
       {url && (
-        <Pressable style={styles.links}>
+        <Pressable style={styles.links} onPress={handleUrlPress}>
           <Text color="primary" fontWeight="bold">
             Open in GitHub
           </Text>
