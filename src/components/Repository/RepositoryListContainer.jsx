@@ -1,13 +1,10 @@
 import RepositoryItem from "./RepositoryItem";
-import { FlatList, StyleSheet } from "react-native";
+import { View, FlatList, StyleSheet } from "react-native";
 import { spacing } from "../../theme";
 
 const styles = StyleSheet.create({
   separator: {
     height: spacing.md,
-  },
-  list: {
-    paddingHorizontal: spacing.md,
   },
 });
 
@@ -20,12 +17,12 @@ export const RepositoryListContainer = ({ repositories }) => {
 
   return (
     <FlatList
-      style={styles.list}
       data={repositoryNodes}
       ItemSeparatorComponent={ItemSeparator}
-      renderItem={({ item }) => <RepositoryItem item={item} />}
+      renderItem={({ item }) => (
+        <RepositoryItem item={item} isPressable={true} />
+      )}
       keyExtractor={(item) => item.id}
-      legacyImplementation={true}
     />
   );
 };
