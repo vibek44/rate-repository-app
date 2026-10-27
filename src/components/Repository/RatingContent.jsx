@@ -1,14 +1,16 @@
-import { View, StyleSheet } from "react-native";
+import { View, Pressable, StyleSheet } from "react-native";
 import Text from "../Text";
-import { spacing, lightColors } from "../../theme";
+import { spacing, lightColors, sizing } from "../../theme";
 
 const styles = StyleSheet.create({
+  mainContainer: {
+    backgroundColor: lightColors.backgroundColorList,
+  },
   container: {
     display: "flex",
     flexDirection: "row",
     justifyContent: "space-around",
     columnGap: spacing.md,
-    backgroundColor: lightColors.backgroundColorList,
     padding: spacing.sm,
   },
   ratingContainer: {
@@ -16,10 +18,18 @@ const styles = StyleSheet.create({
     alignItems: "center",
     rowGap: spacing.sm,
   },
+  links: {
+    height: sizing.medium,
+    backgroundColor: lightColors.backgroundColorSignIn,
+    margin: spacing.sm,
+    justifyContent: "center",
+    alignItems: "center",
+    borderRadius: spacing.sm,
+  },
 });
 
 const RatingContent = ({
-  rating: { stargazersCount, forksCount, ratingAverage, reviewCount },
+  rating: { stargazersCount, forksCount, ratingAverage, reviewCount, url },
 }) => {
   const fieldRating = [
     { label: "Stars", value: stargazersCount },
@@ -28,7 +38,7 @@ const RatingContent = ({
     { label: "Reviews", value: reviewCount },
   ];
   return (
-    <View>
+    <View style={styles.mainContainer}>
       <View style={styles.container}>
         {fieldRating.map((field) => (
           <View key={field.label} style={styles.ratingContainer}>
@@ -44,6 +54,13 @@ const RatingContent = ({
           </View>
         ))}
       </View>
+      {url && (
+        <Pressable style={styles.links}>
+          <Text color="primary" fontWeight="bold">
+            Open in GitHub
+          </Text>
+        </Pressable>
+      )}
     </View>
   );
 };
