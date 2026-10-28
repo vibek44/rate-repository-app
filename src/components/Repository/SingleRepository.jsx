@@ -1,9 +1,14 @@
-import { View, ActivityIndicator, StyleSheet } from "react-native";
+import { View, ActivityIndicator, FlatList, StyleSheet } from "react-native";
 import Text from "../Text";
 import { useParams } from "react-router-native";
-import { useSingleRepository } from "../../hooks/useRepositories";
+import {
+  useSingleRepository,
+  useReviewRepository,
+} from "../../hooks/useRepositories";
 import RepositoryItem from "./RepositoryItem";
+import ReviewRepository from "./ReviewRepository";
 import { spacing } from "../../theme";
+
 const styles = StyleSheet.create({
   textContainer: {
     marginTop: spacing.sm,
@@ -14,9 +19,17 @@ const styles = StyleSheet.create({
 
 const SingleRepository = () => {
   const { id } = useParams();
-  const { data, loading, error } = useSingleRepository(id);
-  const repository = data?.repository;
-  if (loading) {
+  const { data: repositoryData, loading, error } = useSingleRepository(id);
+  const {
+    data: reviewData,
+    loading: isLoading,
+    error: errorReview,
+  } = useReviewRepository(id);
+
+  const repository = repositoryData?.repository;
+  const reviews = reviewData?.repository?.reviews?.edges;
+  //console.log(reviews);
+  if (loading || isLoading) {
     return (
       <View style={styles.textContainer}>
         <ActivityIndicator size="large" color="#0000ff" />
@@ -24,7 +37,7 @@ const SingleRepository = () => {
       </View>
     );
   }
-  if (error) {
+  if (error || errorReview) {
     return (
       <View style={styles.textContainer}>
         <Text color="Alert">SomeThing happen! Try again later! </Text>
@@ -32,7 +45,16 @@ const SingleRepository = () => {
     );
   }
 
-  return <RepositoryItem item={repository} isPressable={false} />;
+  return (
+    <FlatList
+      data={reviews}
+      renderItem={({ item }) => <ReviewRepository item={item} />}
+      keyExtractor={({ node }) => node.id}
+      ListHeaderComponent={() => (
+        <RepositoryItem item={repository} isPressable={false} />
+      )}
+    />
+  );
 };
 
 export default SingleRepository;
