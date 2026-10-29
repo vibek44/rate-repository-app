@@ -37,10 +37,12 @@ const RatingContent = ({
     { label: "Rating", value: ratingAverage },
     { label: "Reviews", value: reviewCount },
   ];
+  const handleUrlPress = url
+    ? () => {
+        Linking.openURL(url);
+      }
+    : undefined;
 
-  const handleUrlPress = () => {
-    Linking.openURL(url);
-  };
   return (
     <View style={styles.mainContainer}>
       <View style={styles.container}>
