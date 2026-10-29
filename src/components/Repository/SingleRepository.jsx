@@ -7,6 +7,7 @@ import {
 } from "../../hooks/useRepositories";
 import RepositoryItem from "./RepositoryItem";
 import ReviewRepository from "./ReviewRepository";
+import ItemSeparator from "./ItemSeparater";
 import { spacing } from "../../theme";
 
 const styles = StyleSheet.create({
@@ -28,7 +29,7 @@ const SingleRepository = () => {
 
   const repository = repositoryData?.repository;
   const reviews = reviewData?.repository?.reviews?.edges;
-  //console.log(reviews);
+
   if (loading || isLoading) {
     return (
       <View style={styles.textContainer}>
@@ -48,6 +49,7 @@ const SingleRepository = () => {
   return (
     <FlatList
       data={reviews}
+      ItemSeparatorComponent={ItemSeparator}
       renderItem={({ item }) => <ReviewRepository item={item} />}
       keyExtractor={({ node }) => node.id}
       ListHeaderComponent={() => (
