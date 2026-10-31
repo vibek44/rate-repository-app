@@ -3,6 +3,7 @@ import { View, TextInput, StyleSheet, Pressable } from "react-native";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import { sizing, spacing, lightColors } from "../../theme";
+
 const styles = StyleSheet.create({
   container: {
     padding: spacing.sm,
@@ -24,10 +25,19 @@ const styles = StyleSheet.create({
   },
 });
 
-const reviewSchema = Yup.object().shape({
+export const reviewSchema = Yup.object({
   ownerName: Yup.string().required("Repository Owner name is Requiired "),
   repositoryName: Yup.string().required("Repository name is Required"),
-  rating: Yup.number().min(0).max(100).required("Rating is required"),
+  rating: Yup.number()
+    .transform((value, originalValue) => {
+      if (originalValue === "") return undefined;
+      return typeof originalValue === "string"
+        ? parseInt(originalValue, 10)
+        : value;
+    })
+    .min(0)
+    .max(100)
+    .required("Rating is required"),
   text: Yup.string().max(200).optional(),
 });
 
@@ -45,7 +55,7 @@ const ReviewFormContainer = ({ onSubmit }) => {
 
   const { ownerName, repositoryName, rating, text } = formik.values;
 
-  console.log(formik.touched);
+  //console.log(formik.touched);
   return (
     <View style={styles.container}>
       <View>
@@ -83,6 +93,7 @@ const ReviewFormContainer = ({ onSubmit }) => {
 
       <View>
         <TextInput
+          keyboardType="numeric"
           placeholder="Rating between 0 and 100"
           value={rating}
           onChangeText={formik.handleChange("rating")}
