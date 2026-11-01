@@ -17,7 +17,7 @@ const AppBar = () => {
 
   const handleLogOut = async () => {
     await authStorage.removeAccessToken();
-    client.clearStore();
+    await client.resetStore();
     navigate("/signin");
   };
   return (
@@ -27,6 +27,13 @@ const AppBar = () => {
           Repositories
         </Text>
       </Link>
+      {me && (
+        <Link to="/review">
+          <Text color="primary" fontSize="subheading" fontWeight="bold">
+            Create a Review
+          </Text>
+        </Link>
+      )}
       {me ? (
         <Pressable onPress={handleLogOut}>
           <Text color="primary" fontSize="subheading" fontWeight="bold">
@@ -40,19 +47,27 @@ const AppBar = () => {
           </Text>
         </Link>
       )}
+      {!me && (
+        <Link to="/signup">
+          <Text color="primary" fontSize="subheading" fontWeight="bold">
+            Sign up
+          </Text>
+        </Link>
+      )}
     </View>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
-    padding: spacing.lg,
+    padding: spacing.md,
     paddingTop: Constants.statusBarHeight,
     flexDirection: "row",
     alignItems: "flex-end",
+    justifyContent: "center",
     height: sizing.large,
     backgroundColor: darkColors.backgroundColorAppBar,
-    columnGap: spacing.lg,
+    columnGap: spacing.md,
   },
 });
 
