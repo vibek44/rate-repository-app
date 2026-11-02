@@ -8,7 +8,7 @@ export const LOGIN = gql`
   }
 `;
 
-export const REVIEWS = gql`
+export const CREATE_REVIEW = gql`
   mutation (
     $repositoryName: String!
     $ownerName: String!
@@ -25,6 +25,14 @@ export const REVIEWS = gql`
     ) {
       userId
       repositoryId
+    }
+  }
+`;
+
+export const CREATE_USER = gql`
+  mutation ($username: String!, $password: String!) {
+    createUser(user: { username: $username, password: $password }) {
+      username
     }
   }
 `;
