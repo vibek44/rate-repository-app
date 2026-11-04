@@ -2,13 +2,6 @@ import { View, Pressable, StyleSheet } from "react-native";
 import DescriptionPart from "./DescriptionPart";
 import RatingContent from "./RatingContent";
 import { useNavigate } from "react-router-native";
-import { spacing } from "../../theme";
-
-const styles = StyleSheet.create({
-  items: {
-    paddingHorizontal: spacing.md,
-  },
-});
 
 const RepositoryItem = ({ item, isPressable }) => {
   const Wrapper = isPressable ? Pressable : View;
@@ -32,7 +25,6 @@ const RepositoryItem = ({ item, isPressable }) => {
 
   return (
     <Wrapper
-      style={styles.items}
       testID="repositoryItem"
       onPress={isPressable ? () => handlePress(id) : undefined}
       testID="repositoryItem"
