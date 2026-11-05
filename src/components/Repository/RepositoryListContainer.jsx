@@ -1,6 +1,7 @@
 import RepositoryItem from "./RepositoryItem";
 import { FlatList } from "react-native";
 import ItemSeparator from "./ItemSeparater";
+import SelectModal from "./SelectModal";
 
 export const RepositoryListContainer = ({ repositories }) => {
   const repositoryNodes = repositories
@@ -14,6 +15,7 @@ export const RepositoryListContainer = ({ repositories }) => {
       renderItem={({ item }) => (
         <RepositoryItem item={item} isPressable={true} />
       )}
+      ListHeaderComponent={<SelectModal />}
       keyExtractor={(item) => item.id}
     />
   );
