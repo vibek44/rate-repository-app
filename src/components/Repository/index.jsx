@@ -1,8 +1,9 @@
 import { View, StyleSheet, ActivityIndicator } from "react-native";
 import useRepositories from "../../hooks/useRepositories";
 import Text from "../Text";
-import RepositoryListContainer from "./RepositoryListContainer";
 import { spacing } from "../../theme";
+import RepositoryListContainer from "./RepositoryListContainer";
+import { PaperProvider } from "react-native-paper";
 
 const styles = StyleSheet.create({
   textContainer: {
@@ -30,7 +31,11 @@ const RepositoryList = () => {
       </View>
     );
   }
-  return <RepositoryListContainer repositories={repositories} />;
+  return (
+    <PaperProvider>
+      <RepositoryListContainer repositories={repositories} />
+    </PaperProvider>
+  );
 };
 
 export default RepositoryList;
