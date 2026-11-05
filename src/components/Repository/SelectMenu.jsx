@@ -14,10 +14,11 @@ const styles = StyleSheet.create({
     backgroundColor: "#00000080",
   },
   menuCentered: {
-    transform: [
-      { translateX: +100 }, // Half of your estimated menu width (adjust if it looks off center)
-      { translateY: -280 }, // Half of your estimated menu height
-    ],
+    transform: [{ translateX: 150 }, { translateY: -280 }],
+  },
+  menuContent: {
+    width: 300,
+    backgroundColor: "white", // Ensures the wider background stays solid white
   },
 });
 const SelectMenu = () => {
@@ -51,12 +52,16 @@ const SelectMenu = () => {
           onDismiss={closeMenu}
           anchor={{ x: width / 2, y: height / 2 }}
           style={styles.menuCentered}
+          contentStyle={styles.menuContent}
         >
-          <Menu.Item onPress={() => {}} title="Select Repositories ..." />
-          <Menu.Item onPress={() => {}} title="Item 1" />
-          <Menu.Item onPress={() => {}} title="Item 2" />
-          <Divider />
-          <Menu.Item onPress={() => {}} title="Item 3" />
+          <Menu.Item
+            onPress={() => {}}
+            title="Select an item..."
+            titleStyle={{ color: "#A8A8A8" }}
+          />
+          <Menu.Item onPress={() => {}} title="Latest Repositories" />
+          <Menu.Item onPress={() => {}} title="Highest rated repositories" />
+          <Menu.Item onPress={() => {}} title="Lowest rated repositories" />
         </Menu>
       </Portal>
     </View>
