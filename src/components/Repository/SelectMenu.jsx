@@ -14,84 +14,74 @@ const styles = StyleSheet.create({
     backgroundColor: "#00000080",
   },
   menuCentered: {
-    transform: [{ translateX: 160 }, { translateY: -280 }],
+    transform: [{ translateX: 30 }, { translateY: -0 }],
   },
   menuContent: {
-    width: 300,
+    width: 280,
     backgroundColor: "white", // Ensures the wider background stays solid white
   },
 });
-const SelectMenu = ({ handleVariables }) => {
-  const [selectedValue, setSelectedValue] = useState("");
+const SelectMenu = ({ handleVariables, label }) => {
   const [visible, setVisible] = useState(false);
 
   const openMenu = () => setVisible(true);
 
   const closeMenu = () => setVisible(false);
-  const handleSelect = (label, order, direction) => {
-    setSelectedValue(label);
-    handleVariables(order, direction);
+  const handleSelect = (label, orderBy, orderDirection) => {
+    handleVariables(label, orderBy, orderDirection);
     closeMenu();
   };
   return (
     <View>
-      <Pressable onPress={openMenu}>
-        <TextInput
-          placeholder="Select Repositories"
-          value={selectedValue}
-          editable={false}
-          right={
-            <TextInput.Icon
-              icon={visible ? "menu-up" : "menu-down"}
-              onPress={() => setVisible(!visible)}
-            />
-          }
-        />
-      </Pressable>
       <Portal>
         {visible && (
           <Pressable style={styles.transparentContainer} onPress={closeMenu} />
         )}
-        <Menu
-          visible={visible}
-          onDismiss={closeMenu}
-          anchor={{ x: width / 2, y: height / 2 }}
-          style={styles.menuCentered}
-          contentStyle={styles.menuContent}
-        >
-          <Menu.Item
-            onPress={() => {}}
-            title="Select an item..."
-            titleStyle={{ color: "#A8A8A8" }}
-          />
-          <Menu.Item
-            onPress={() => {
-              handleSelect("Latest Repositories", "CREATED_AT", "DESC");
-            }}
-            title="Latest Repositories"
-          />
-          <Menu.Item
-            onPress={() => {
-              handleSelect(
-                "Highest rated repositories",
-                "RATING_AVERAGE",
-                "DESC"
-              );
-            }}
-            title="Highest rated repositories"
-          />
-          <Menu.Item
-            onPress={() => {
-              handleSelect(
-                "Lowest rated repositories",
-                "RATING_AVERAGE",
-                "ASC"
-              );
-            }}
-            title="Lowest rated repositories"
-          />
-        </Menu>
       </Portal>
+
+      <Menu
+        visible={visible}
+        onDismiss={closeMenu}
+        anchor={
+          <Pressable onPress={openMenu}>
+            <View pointerEvents="none">
+              <TextInput
+                placeholder={label}
+                editable={false}
+                right={
+                  <TextInput.Icon icon={visible ? "menu-up" : "menu-down"} />
+                }
+              />
+            </View>
+          </Pressable>
+        }
+        style={styles.menuCentered}
+        contentStyle={styles.menuContent}
+      >
+        <Menu.Item
+          onPress={() => {}}
+          title="Select an item..."
+          titleStyle={{ color: "#A8A8A8" }}
+        />
+        <Menu.Item
+          onPress={() => {
+            handleSelect("Latest Repositories", "CREATED_AT", "DESC");
+          }}
+          title="Latest Repositories"
+        />
+        <Menu.Item
+          onPress={() => {
+            handleSelect("Highest rated repositories", "RATING_AVERAGE", "ASC");
+          }}
+          title="Highest rated repositories"
+        />
+        <Menu.Item
+          onPress={() => {
+            handleSelect("Lowest rated repositories", "RATING_AVERAGE", "DESC");
+          }}
+          title="Lowest rated repositories"
+        />
+      </Menu>
     </View>
   );
 };
