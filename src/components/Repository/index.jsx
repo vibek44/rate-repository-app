@@ -16,15 +16,16 @@ const styles = StyleSheet.create({
 
 const RepositoryList = () => {
   const [variables, setVariables] = useState({
+    label: "Latest Repositories",
     orderBy: "CREATED_AT",
     orderDirection: "DESC",
   });
 
-  const { orderBy, orderDirection } = variables;
+  const { label, orderBy, orderDirection } = variables;
   const { data, loading, error } = useRepositories(orderBy, orderDirection);
   const repositories = data?.repositories;
-  const handleVariables = (order, direction) => {
-    setVariables({ ...variables, orderBy: order, orderDirection: direction });
+  const handleVariables = (label, orderBy, orderDirection) => {
+    setVariables({ ...variables, label, orderBy, orderDirection });
   };
   if (loading) {
     return (
@@ -46,6 +47,7 @@ const RepositoryList = () => {
       <RepositoryListContainer
         repositories={repositories}
         handleVariables={handleVariables}
+        label={label}
       />
     </PaperProvider>
   );
