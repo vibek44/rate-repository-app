@@ -14,26 +14,31 @@ const styles = StyleSheet.create({
     backgroundColor: "#00000080",
   },
   menuCentered: {
-    transform: [{ translateX: 150 }, { translateY: -280 }],
+    transform: [{ translateX: 160 }, { translateY: -280 }],
   },
   menuContent: {
     width: 300,
     backgroundColor: "white", // Ensures the wider background stays solid white
   },
 });
-const SelectMenu = () => {
+const SelectMenu = ({ handleVariables }) => {
+  const [selectedValue, setSelectedValue] = useState("");
   const [visible, setVisible] = useState(false);
 
   const openMenu = () => setVisible(true);
 
   const closeMenu = () => setVisible(false);
-
+  const handleSelect = (label, order, direction) => {
+    setSelectedValue(label);
+    handleVariables(order, direction);
+    closeMenu();
+  };
   return (
     <View>
       <Pressable onPress={openMenu}>
         <TextInput
-          label="Select Repositories"
-          //value={selectedValue}
+          placeholder="Select Repositories"
+          value={selectedValue}
           editable={false}
           right={
             <TextInput.Icon
@@ -59,9 +64,32 @@ const SelectMenu = () => {
             title="Select an item..."
             titleStyle={{ color: "#A8A8A8" }}
           />
-          <Menu.Item onPress={() => {}} title="Latest Repositories" />
-          <Menu.Item onPress={() => {}} title="Highest rated repositories" />
-          <Menu.Item onPress={() => {}} title="Lowest rated repositories" />
+          <Menu.Item
+            onPress={() => {
+              handleSelect("Latest Repositories", "CREATED_AT", "DESC");
+            }}
+            title="Latest Repositories"
+          />
+          <Menu.Item
+            onPress={() => {
+              handleSelect(
+                "Highest rated repositories",
+                "RATING_AVERAGE",
+                "DESC"
+              );
+            }}
+            title="Highest rated repositories"
+          />
+          <Menu.Item
+            onPress={() => {
+              handleSelect(
+                "Lowest rated repositories",
+                "RATING_AVERAGE",
+                "ASC"
+              );
+            }}
+            title="Lowest rated repositories"
+          />
         </Menu>
       </Portal>
     </View>
