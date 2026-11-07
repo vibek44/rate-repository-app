@@ -19,6 +19,7 @@ const RepositoryList = () => {
     orderBy: "CREATED_AT",
     orderDirection: "DESC",
   });
+
   const { orderBy, orderDirection } = variables;
   const { data, loading, error } = useRepositories(orderBy, orderDirection);
   const repositories = data?.repositories;
