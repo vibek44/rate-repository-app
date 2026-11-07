@@ -1,5 +1,6 @@
 import { View, StyleSheet, ActivityIndicator } from "react-native";
 import useRepositories from "../../hooks/useRepositories";
+import { useState } from "react";
 import Text from "../Text";
 import { spacing } from "../../theme";
 import RepositoryListContainer from "./RepositoryListContainer";
@@ -14,8 +15,16 @@ const styles = StyleSheet.create({
 });
 
 const RepositoryList = () => {
-  const { data, loading, error } = useRepositories();
+  const [variables, setVariables] = useState({
+    orderBy: "CREATED_AT",
+    orderDirection: "DESC",
+  });
+  const { orderBy, orderDirection } = variables;
+  const { data, loading, error } = useRepositories(orderBy, orderDirection);
   const repositories = data?.repositories;
+  const handleVariables = (order, direction) => {
+    setVariables({ ...variables, orderBy: order, orderDirection: direction });
+  };
   if (loading) {
     return (
       <View style={styles.textContainer}>
@@ -33,7 +42,10 @@ const RepositoryList = () => {
   }
   return (
     <PaperProvider>
-      <RepositoryListContainer repositories={repositories} />
+      <RepositoryListContainer
+        repositories={repositories}
+        handleVariables={handleVariables}
+      />
     </PaperProvider>
   );
 };
