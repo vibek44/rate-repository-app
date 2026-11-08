@@ -1,8 +1,23 @@
 import { gql } from "@apollo/client";
 
+export const REPOSITORY_SCHEMA_TYPES = gql`
+  enum AllRepositoriesOrderBy {
+    CREATED_AT
+    RATING_AVERAGE
+  }
+
+  enum OrderDirection {
+    ASC
+    DESC
+  }
+`;
+
 export const GET_REPOSITORIES = gql`
-  {
-    repositories {
+  query GetRepositories(
+    $orderBy: AllRepositoriesOrderBy
+    $orderDirection: OrderDirection
+  ) {
+    repositories(orderBy: $orderBy, orderDirection: $orderDirection) {
       edges {
         node {
           id
