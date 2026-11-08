@@ -2,6 +2,7 @@ import RepositoryItem from "./RepositoryItem";
 import { FlatList } from "react-native";
 import ItemSeparator from "./ItemSeparater";
 import SelectMenu from "./SelectMenu";
+import SearchBar from "./SearchBar";
 
 export const RepositoryListContainer = ({
   repositories,
@@ -19,9 +20,12 @@ export const RepositoryListContainer = ({
       renderItem={({ item }) => (
         <RepositoryItem item={item} isPressable={true} />
       )}
-      ListHeaderComponent={
-        <SelectMenu handleVariables={handleVariables} label={label} />
-      }
+      ListHeaderComponent={() => (
+        <>
+          <SearchBar />
+          <SelectMenu handleVariables={handleVariables} label={label} />
+        </>
+      )}
       keyExtractor={(item) => item.id}
     />
   );
