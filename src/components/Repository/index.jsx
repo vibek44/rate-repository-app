@@ -1,10 +1,11 @@
 import { View, StyleSheet, ActivityIndicator } from "react-native";
 import useRepositories from "../../hooks/useRepositories";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Text from "../Text";
 import { spacing } from "../../theme";
 import RepositoryListContainer from "./RepositoryListContainer";
 import { PaperProvider } from "react-native-paper";
+import { useDebounce } from "use-debounce";
 
 const styles = StyleSheet.create({
   textContainer: {
@@ -19,13 +20,23 @@ const RepositoryList = () => {
     label: "Latest Repositories",
     orderBy: "CREATED_AT",
     orderDirection: "DESC",
+    searchText: "",
   });
 
-  const { label, orderBy, orderDirection } = variables;
-  const { data, loading, error } = useRepositories(orderBy, orderDirection);
+  const { label, orderBy, orderDirection, searchText } = variables;
+  const [debouncedText] = useDebounce(searchText, 1000);
+
+  const { data, loading, error } = useRepositories(
+    orderBy,
+    orderDirection,
+    debouncedText
+  );
   const repositories = data?.repositories;
   const handleVariables = (label, orderBy, orderDirection) => {
     setVariables({ ...variables, label, orderBy, orderDirection });
+  };
+  const handleSearchVariables = (text) => {
+    setVariables({ ...variables, searchText: text });
   };
   if (loading) {
     return (
@@ -48,6 +59,8 @@ const RepositoryList = () => {
         repositories={repositories}
         handleVariables={handleVariables}
         label={label}
+        handleSearchVariables={handleSearchVariables}
+        searchText={searchText}
       />
     </PaperProvider>
   );
