@@ -37,9 +37,10 @@ export const lightColors = {
   textPrimary: "#ffffff",
   textSecondary: "#586069",
   textAlert: "#990000",
-  backgroundColorMain: "#e1e4e8",
-  backgroundColorList: "#ffffff",
-  backgroundColorSignIn: "#007AFF",
+  colorGrey: "#e1e4e8",
+  colorWhite: "#ffffff",
+  colorBlue: "#007AFF",
+  backgroundColorModal: "#b2d4b6",
   colorLanguage: "#0366d6",
 };
 
