@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { View, Pressable, StyleSheet, Dimensions } from "react-native";
-import { Menu, Divider, TextInput, Portal } from "react-native-paper";
-import { spacing, sizing, lightColors } from "../../theme";
+import { Menu, TextInput, Portal } from "react-native-paper";
+import { lightColors, spacing } from "../../theme";
 
 const { width, height } = Dimensions.get("window");
 const styles = StyleSheet.create({
@@ -11,7 +11,7 @@ const styles = StyleSheet.create({
     left: 0,
     right: 0,
     bottom: 0,
-    backgroundColor: "#00000080",
+    backgroundColor: lightColors.backgroundColorModal,
   },
   menuCentered: {
     transform: [{ translateX: 30 }, { translateY: -0 }],
@@ -53,6 +53,7 @@ const SelectMenu = ({ handleVariables, label }) => {
                 }
                 style={{
                   backgroundColor: lightColors.colorGrey,
+                  marginHorizontal: spacing.lg,
                 }}
               />
             </View>
@@ -63,7 +64,7 @@ const SelectMenu = ({ handleVariables, label }) => {
       >
         <Menu.Item
           title="Select an item..."
-          titleStyle={{ color: "#A8A8A8" }}
+          titleStyle={{ color: lightColors.textSecondary }}
         />
         <Menu.Item
           onPress={() => {
