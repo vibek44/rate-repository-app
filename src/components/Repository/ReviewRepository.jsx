@@ -8,20 +8,20 @@ const styles = StyleSheet.create({
     marginHorizontal: spacing.md,
     marginTop: spacing.md,
     columnGap: spacing.md,
-    backgroundColor: lightColors.backgroundColorList,
+    backgroundColor: lightColors.colorWhite,
     padding: spacing.sm,
   },
   ratingContainer: {
     height: sizing.medium,
     width: sizing.medium,
     borderRadius: sizing.medium / 2,
-    borderColor: lightColors.backgroundColorSignIn,
+    borderColor: lightColors.colorBlue,
     borderWidth: 5,
     justifyContent: "center",
     alignItems: "center",
   },
   ratingElement: {
-    color: lightColors.backgroundColorSignIn,
+    color: lightColors.colorBlue,
   },
   reviewContainer: {
     rowGap: spacing.sm,
@@ -31,7 +31,7 @@ const styles = StyleSheet.create({
 
 const ReviewRepository = ({ item }) => {
   const date = format(item.node.createdAt, "dd MMM yyyy");
-  console.log(item.node.createdAt);
+
   return (
     <View style={styles.outerContainer}>
       <View style={styles.ratingContainer}>
