@@ -18,7 +18,7 @@ const styles = StyleSheet.create({
   },
   menuContent: {
     width: 280,
-    backgroundColor: "white", // Ensures the wider background stays solid white
+    backgroundColor: lightColors.colorWhite,
   },
 });
 const SelectMenu = ({ handleVariables, label }) => {
@@ -51,6 +51,9 @@ const SelectMenu = ({ handleVariables, label }) => {
                 right={
                   <TextInput.Icon icon={visible ? "menu-up" : "menu-down"} />
                 }
+                style={{
+                  backgroundColor: lightColors.colorGrey,
+                }}
               />
             </View>
           </Pressable>
@@ -59,7 +62,6 @@ const SelectMenu = ({ handleVariables, label }) => {
         contentStyle={styles.menuContent}
       >
         <Menu.Item
-          onPress={() => {}}
           title="Select an item..."
           titleStyle={{ color: "#A8A8A8" }}
         />
