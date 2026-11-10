@@ -40,7 +40,7 @@ export const lightColors = {
   colorGrey: "#e1e4e8",
   colorWhite: "#ffffff",
   colorBlue: "#007AFF",
-  backgroundColorModal: "#b2d4b6",
+  backgroundColorModal: "#00000080",
   colorLanguage: "#0366d6",
 };
 
