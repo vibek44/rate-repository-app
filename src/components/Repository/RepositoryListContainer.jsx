@@ -8,6 +8,8 @@ export const RepositoryListContainer = ({
   repositories,
   handleVariables,
   label,
+  handleSearchVariables,
+  searchText,
 }) => {
   const repositoryNodes = repositories
     ? repositories.edges.map((edge) => edge.node)
@@ -20,12 +22,15 @@ export const RepositoryListContainer = ({
       renderItem={({ item }) => (
         <RepositoryItem item={item} isPressable={true} />
       )}
-      ListHeaderComponent={() => (
+      ListHeaderComponent={
         <>
-          <SearchBar />
-          <SelectMenu handleVariables={handleVariables} label={label} />
+          <SearchBar
+            searchText={searchText}
+            handleSearchVariables={handleSearchVariables}
+          />
+          <SelectMenu label={label} handleVariables={handleVariables} />
         </>
-      )}
+      }
       keyExtractor={(item) => item.id}
     />
   );
