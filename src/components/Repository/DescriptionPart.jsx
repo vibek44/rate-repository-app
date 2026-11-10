@@ -8,7 +8,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-around",
     columnGap: spacing.md,
-    backgroundColor: lightColors.backgroundColorList,
+    backgroundColor: lightColors.colorWhite,
     padding: spacing.sm,
   },
   avatarWrapper: {
