@@ -4,7 +4,7 @@ import { spacing, lightColors, sizing } from "../../theme";
 
 const styles = StyleSheet.create({
   mainContainer: {
-    backgroundColor: lightColors.backgroundColorList,
+    backgroundColor: lightColors.colorWhite,
   },
   container: {
     display: "flex",
