@@ -26,7 +26,7 @@ const styles = StyleSheet.create({
   },
   buttonWrapper: {
     height: sizing.medium,
-    backgroundColor: lightColors.backgroundColorSignIn,
+    backgroundColor: lightColors.colorBlue,
     borderRadius: spacing.lg,
     alignItems: "center",
     justifyContent: "center",
@@ -70,12 +70,14 @@ const SignUpContainer = ({ onSubmit }) => {
           onBlur={formik.handleBlur("username")}
           style={[
             styles.item,
-            formik.errors.username && { borderColor: "#FF6347" },
+            formik.errors.username && { borderColor: lightColors.colorError },
           ]}
         />
 
         {formik.touched.username && formik.errors.username && (
-          <Text style={{ color: "#FF6347" }}>{formik.errors.username}</Text>
+          <Text style={{ color: lightColors.colorError }}>
+            {formik.errors.username}
+          </Text>
         )}
       </View>
       <View>
@@ -87,7 +89,7 @@ const SignUpContainer = ({ onSubmit }) => {
           onBlur={formik.handleBlur("password")}
           style={[
             styles.item,
-            formik.errors.password && { borderColor: "#FF6347" },
+            formik.errors.password && { borderColor: lightColors.colorError },
           ]}
         />
         <TouchableOpacity
@@ -101,7 +103,9 @@ const SignUpContainer = ({ onSubmit }) => {
           />
         </TouchableOpacity>
         {formik.touched.password && formik.errors.password && (
-          <Text style={{ color: "#FF6347" }}>{formik.errors.password}</Text>
+          <Text style={{ color: lightColors.colorError }}>
+            {formik.errors.password}
+          </Text>
         )}
       </View>
 
