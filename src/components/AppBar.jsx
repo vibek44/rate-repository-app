@@ -1,5 +1,5 @@
 import Constants from "expo-constants";
-import { View, StyleSheet, Pressable } from "react-native";
+import { View, ScrollView, StyleSheet, Pressable } from "react-native";
 import useUser from "../hooks/useUser";
 import Text from "./Text";
 import { Link, useNavigate } from "react-router-native";
@@ -21,53 +21,58 @@ const AppBar = () => {
     navigate("/signin");
   };
   return (
-    <View style={styles.container}>
-      <Link to="/">
-        <Text color="primary" fontSize="subheading" fontWeight="bold">
-          Repositories
-        </Text>
-      </Link>
-      {me && (
-        <Link to="/review">
+    <View style={styles.outerContainer}>
+      <ScrollView
+        horizontal={true}
+        showsHorizontalScrollIndicator={false}
+        contentContainerStyle={styles.innerContainer}
+      >
+        <Link to="/">
           <Text color="primary" fontSize="subheading" fontWeight="bold">
-            Create a Review
+            Repositories
           </Text>
         </Link>
-      )}
-      {me ? (
-        <Pressable onPress={handleLogOut}>
-          <Text color="primary" fontSize="subheading" fontWeight="bold">
-            SignOut
-          </Text>
-        </Pressable>
-      ) : (
-        <Link to="/signin">
-          <Text color="primary" fontSize="subheading" fontWeight="bold">
-            SignIn
-          </Text>
-        </Link>
-      )}
-      {!me && (
-        <Link to="/signup">
-          <Text color="primary" fontSize="subheading" fontWeight="bold">
-            Sign up
-          </Text>
-        </Link>
-      )}
+        {me && (
+          <Link to="/review">
+            <Text color="primary" fontSize="subheading" fontWeight="bold">
+              Create a Review
+            </Text>
+          </Link>
+        )}
+        {me ? (
+          <Pressable onPress={handleLogOut}>
+            <Text color="primary" fontSize="subheading" fontWeight="bold">
+              SignOut
+            </Text>
+          </Pressable>
+        ) : (
+          <Link to="/signin">
+            <Text color="primary" fontSize="subheading" fontWeight="bold">
+              SignIn
+            </Text>
+          </Link>
+        )}
+        {!me && (
+          <Link to="/signup">
+            <Text color="primary" fontSize="subheading" fontWeight="bold">
+              Sign up
+            </Text>
+          </Link>
+        )}
+      </ScrollView>
     </View>
   );
 };
 
 const styles = StyleSheet.create({
-  container: {
-    padding: spacing.md,
+  outerContainer: {
     paddingTop: Constants.statusBarHeight,
-    flexDirection: "row",
-    alignItems: "flex-end",
-    justifyContent: "flex-start",
-    height: sizing.xlarge,
     backgroundColor: darkColors.backgroundColorAppBar,
-    columnGap: spacing.md,
+  },
+  innerContainer: {
+    padding: spacing.md,
+    alignItems: "center",
+    columnGap: spacing.lg,
   },
 });
 
