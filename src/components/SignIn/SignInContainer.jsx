@@ -28,7 +28,7 @@ const styles = StyleSheet.create({
   },
   buttonWrapper: {
     height: sizing.medium,
-    backgroundColor: lightColors.backgroundColorSignIn,
+    backgroundColor: lightColors.colorBlue,
     borderRadius: spacing.lg,
     alignItems: "center",
     justifyContent: "center",
@@ -41,6 +41,7 @@ const SignInContainer = ({ onSubmit }) => {
     validationSchema: SignInSchema,
     onSubmit: onSubmit,
   });
+
   return (
     <View style={styles.container}>
       <View style={styles.subContainer}>
@@ -48,28 +49,34 @@ const SignInContainer = ({ onSubmit }) => {
           placeholder="UserName"
           value={formik.values.username}
           onChangeText={formik.handleChange("username")}
+          onBlur={formik.handleBlur("username")}
           style={[
             styles.item,
-            formik.errors.username && { borderColor: "#FF6347" },
+            formik.errors.username && { borderColor: lightColors.colorError },
           ]}
         />
         {formik.touched.username && formik.errors.username && (
-          <Text style={{ color: "#FF6347" }}>{formik.errors.username}</Text>
+          <Text style={{ color: lightColors.colorError }}>
+            {formik.errors.username}
+          </Text>
         )}
       </View>
       <View style={styles.subContainer}>
         <TextInput
           placeholder="Password"
           value={formik.values.password}
-          onChangeText={formik.handleChange("password")}
           secureTextEntry={true}
+          onChangeText={formik.handleChange("password")}
+          onBlur={formik.handleBlur("password")}
           style={[
             styles.item,
-            formik.errors.password && { borderColor: "#FF6347" },
+            formik.errors.password && { borderColor: lightColors.colorError },
           ]}
         />
         {formik.touched.password && formik.errors.password && (
-          <Text style={{ color: "#FF6347" }}>{formik.errors.password}</Text>
+          <Text style={{ color: lightColors.colorError }}>
+            {formik.errors.password}
+          </Text>
         )}
       </View>
       <Pressable style={styles.buttonWrapper} onPress={formik.handleSubmit}>
