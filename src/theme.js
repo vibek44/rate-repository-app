@@ -42,6 +42,7 @@ export const lightColors = {
   colorBlue: "#007AFF",
   backgroundColorModal: "#00000080",
   colorLanguage: "#0366d6",
+  colorError: "FF6347",
 };
 
 export const darkColors = {
