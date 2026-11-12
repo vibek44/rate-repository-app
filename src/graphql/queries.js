@@ -92,6 +92,7 @@ export const GET_CURRENT_USER = gql`
             repositoryId
             rating
             createdAt
+            text
           }
         }
       }
