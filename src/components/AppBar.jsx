@@ -1,9 +1,9 @@
 import Constants from "expo-constants";
 import { View, ScrollView, StyleSheet, Pressable } from "react-native";
-import useUser from "../hooks/useUser";
+import { useUser } from "../hooks/useUser";
 import Text from "./Text";
 import { Link, useNavigate } from "react-router-native";
-import { sizing, darkColors, spacing } from "../theme";
+import { darkColors, spacing } from "../theme";
 import AuthStorage from "../utils/authStorage";
 import { useApolloClient } from "@apollo/client/react";
 
@@ -36,6 +36,13 @@ const AppBar = () => {
           <Link to="/review">
             <Text color="primary" fontSize="subheading" fontWeight="bold">
               Create a Review
+            </Text>
+          </Link>
+        )}
+        {me && (
+          <Link to="/myreviews">
+            <Text color="primary" fontSize="subheading" fontWeight="bold">
+              My reviews
             </Text>
           </Link>
         )}
