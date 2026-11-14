@@ -5,7 +5,7 @@ import {
   ActivityIndicator,
   StyleSheet,
 } from "react-native";
-import useUser from "../../hooks/useUser";
+import { useUser } from "../../hooks/useUser";
 import ItemSeparator from "./ItemSeparater";
 import { spacing } from "../../theme";
 import ReviewRepository from "./ReviewRepository";
