@@ -6,7 +6,7 @@ import { sizing, spacing, lightColors } from "../../theme";
 
 const styles = StyleSheet.create({
   container: {
-    padding: spacing.sm,
+    padding: spacing.md,
     rowGap: spacing.lg,
   },
   item: {
@@ -18,7 +18,7 @@ const styles = StyleSheet.create({
   },
   buttonWrapper: {
     height: sizing.medium,
-    backgroundColor: lightColors.backgroundColorSignIn,
+    backgroundColor: lightColors.colorBlue,
     borderRadius: spacing.lg,
     alignItems: "center",
     justifyContent: "center",
