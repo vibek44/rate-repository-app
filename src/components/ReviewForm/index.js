@@ -1,8 +1,8 @@
 import ReviewFormContainer from "./ReviewFormContainer";
-import useReview from "../../hooks/useReview";
+import { useCreateReview } from "../../hooks/useReview";
 import { reviewSchema } from "./ReviewFormContainer";
 const ReviewForm = () => {
-  const [review] = useReview();
+  const [review] = useCreateReview();
   const onSubmit = async (values) => {
     const castedValues = reviewSchema.cast(values);
     try {
