@@ -20,7 +20,7 @@ const styles = StyleSheet.create({
   },
   links: {
     height: sizing.medium,
-    backgroundColor: lightColors.backgroundColorSignIn,
+    backgroundColor: lightColors.colorBlue,
     margin: spacing.sm,
     justifyContent: "center",
     alignItems: "center",
