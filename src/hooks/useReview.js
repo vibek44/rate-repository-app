@@ -1,5 +1,5 @@
 import { useMutation, useApolloClient } from "@apollo/client/react";
-import useUser from "./useUser";
+import { useUser } from "./useUser";
 import { CREATE_REVIEW, DELETE_REVIEW } from "../graphql/mutation";
 import { useNavigate } from "react-router-native";
 
