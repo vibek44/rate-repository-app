@@ -4,6 +4,7 @@ import RatingContent from "./RatingContent";
 import { useNavigate } from "react-router-native";
 
 const RepositoryItem = ({ item, isPressable }) => {
+  const navigate = useNavigate();
   const Wrapper = isPressable ? Pressable : View;
   const {
     id,
@@ -17,7 +18,6 @@ const RepositoryItem = ({ item, isPressable }) => {
     ownerAvatarUrl,
   } = item;
   const url = isPressable ? undefined : item.url;
-  const navigate = isPressable ? useNavigate() : undefined;
 
   const handlePress = (id) => {
     navigate(`/repository/${id}`);
