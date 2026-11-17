@@ -74,13 +74,17 @@ const SelectMenu = ({ handleVariables, label }) => {
         />
         <Menu.Item
           onPress={() => {
-            handleSelect("Highest rated repositories", "RATING_AVERAGE", "ASC");
+            handleSelect(
+              "Highest rated repositories",
+              "RATING_AVERAGE",
+              "DESC"
+            );
           }}
           title="Highest rated repositories"
         />
         <Menu.Item
           onPress={() => {
-            handleSelect("Lowest rated repositories", "RATING_AVERAGE", "DESC");
+            handleSelect("Lowest rated repositories", "RATING_AVERAGE", "ASC");
           }}
           title="Lowest rated repositories"
         />
