@@ -10,6 +10,7 @@ export const RepositoryListContainer = ({
   label,
   handleSearchVariables,
   searchText,
+  fetchMore,
 }) => {
   const repositoryNodes = repositories
     ? repositories.edges.map((edge) => edge.node)
@@ -31,6 +32,7 @@ export const RepositoryListContainer = ({
           <SelectMenu label={label} handleVariables={handleVariables} />
         </>
       }
+      onEndReached={fetchMore}
       keyExtractor={(item) => item.id}
     />
   );
