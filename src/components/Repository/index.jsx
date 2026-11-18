@@ -26,12 +26,12 @@ const RepositoryList = () => {
   const { label, orderBy, orderDirection, searchText } = variables;
   const [debouncedText] = useDebounce(searchText, 1000);
 
-  const { data, loading, error } = useRepositories(
+  const { repositories, loading, error, fetchMore } = useRepositories(
     orderBy,
     orderDirection,
     debouncedText
   );
-  const repositories = data?.repositories;
+  console.log(repositories);
   const handleVariables = (label, orderBy, orderDirection) => {
     setVariables({ ...variables, label, orderBy, orderDirection });
   };
@@ -61,6 +61,7 @@ const RepositoryList = () => {
         label={label}
         handleSearchVariables={handleSearchVariables}
         searchText={searchText}
+        fetchMore={fetchMore}
       />
     </PaperProvider>
   );
