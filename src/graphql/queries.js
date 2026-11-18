@@ -14,15 +14,20 @@ export const REPOSITORY_SCHEMA_TYPES = gql`
 
 export const GET_REPOSITORIES = gql`
   query GetRepositories(
+    $first: Int
+    $after: String
     $orderBy: AllRepositoriesOrderBy
     $orderDirection: OrderDirection
     $searchKeyword: String
   ) {
     repositories(
+      first: $first
+      after: $after
       orderBy: $orderBy
       orderDirection: $orderDirection
       searchKeyword: $searchKeyword
     ) {
+      totalCount
       edges {
         node {
           id
@@ -35,6 +40,12 @@ export const GET_REPOSITORIES = gql`
           stargazersCount
           ownerAvatarUrl
         }
+        cursor
+      }
+      pageInfo {
+        hasNextPage
+        startCursor
+        endCursor
       }
     }
   }
