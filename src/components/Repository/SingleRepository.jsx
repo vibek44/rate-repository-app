@@ -22,13 +22,13 @@ const SingleRepository = () => {
   const { id } = useParams();
   const { data: repositoryData, loading, error } = useSingleRepository(id);
   const {
-    data: reviewData,
+    reviews,
     loading: isLoading,
     error: errorReview,
+    fetchMore,
   } = useReviewRepository(id);
-
+  console.log(reviews);
   const repository = repositoryData?.repository;
-  const reviews = reviewData?.repository?.reviews?.edges;
 
   if (loading || isLoading) {
     return (
@@ -53,6 +53,7 @@ const SingleRepository = () => {
       renderItem={({ item }) => (
         <ReviewRepository item={item} isPressable={false} />
       )}
+      onEndReached={fetchMore}
       keyExtractor={({ node }) => node.id}
       ListHeaderComponent={() => (
         <RepositoryItem item={repository} isPressable={false} />
