@@ -41,10 +41,31 @@ export const useSingleRepository = (id) => {
 };
 
 export const useReviewRepository = (id) => {
-  const result = useQuery(REVIEW_REPOSITORIES, {
-    fetchPolicy: "cache-and-network",
-    variables: { id },
-  });
+  const variables = { id, first: 2 };
+  const { data, loading, fetchMore, ...result } = useQuery(
+    REVIEW_REPOSITORIES,
+    {
+      fetchPolicy: "cache-and-network",
+      variables,
+    }
+  );
 
-  return result;
+  const fetchReviewMore = () => {
+    const canFetchMore =
+      !loading && data?.repository.reviews.pageInfo.hasNextPage;
+    if (!canFetchMore) return;
+    fetchMore({
+      variables: {
+        after: data?.repository.reviews.pageInfo.endCursor,
+        ...variables,
+      },
+    });
+  };
+
+  return {
+    reviews: data?.repository.reviews.edges,
+    fetchMore: fetchReviewMore,
+    loading,
+    ...result,
+  };
 };
