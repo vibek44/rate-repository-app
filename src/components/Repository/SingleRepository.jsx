@@ -1,10 +1,7 @@
 import { View, ActivityIndicator, FlatList, StyleSheet } from "react-native";
 import Text from "../Text";
 import { useParams } from "react-router-native";
-import {
-  useSingleRepository,
-  useReviewRepository,
-} from "../../hooks/useRepositories";
+import { useSingleRepository } from "../../hooks/useRepositories";
 import RepositoryItem from "./RepositoryItem";
 import ReviewRepository from "./ReviewRepository";
 import ItemSeparator from "./ItemSeparater";
@@ -20,17 +17,10 @@ const styles = StyleSheet.create({
 
 const SingleRepository = () => {
   const { id } = useParams();
-  const { data: repositoryData, loading, error } = useSingleRepository(id);
-  const {
-    reviews,
-    loading: isLoading,
-    error: errorReview,
-    fetchMore,
-  } = useReviewRepository(id);
-  console.log(reviews);
-  const repository = repositoryData?.repository;
+  const { repository, reviews, loading, fetchMore, error } =
+    useSingleRepository(id);
 
-  if (loading || isLoading) {
+  if (loading) {
     return (
       <View style={styles.textContainer}>
         <ActivityIndicator size="large" color="#0000ff" />
@@ -38,7 +28,7 @@ const SingleRepository = () => {
       </View>
     );
   }
-  if (error || errorReview) {
+  if (error) {
     return (
       <View style={styles.textContainer}>
         <Text color="Alert">SomeThing happen! Try again later! </Text>
