@@ -6,7 +6,7 @@ import {
 } from "../graphql/queries";
 
 const useRepositories = (orderBy, orderDirection, searchKeyword) => {
-  const variables = { first: 5, orderBy, orderDirection, searchKeyword };
+  const variables = { first: 4, orderBy, orderDirection, searchKeyword };
   const { data, loading, fetchMore, ...result } = useQuery(GET_REPOSITORIES, {
     fetchPolicy: "cache-and-network",
     variables,
@@ -32,27 +32,18 @@ const useRepositories = (orderBy, orderDirection, searchKeyword) => {
 export default useRepositories;
 
 export const useSingleRepository = (id) => {
-  const result = useQuery(SINGLE_REPOSITORIES, {
-    fetchPolicy: "cache-and-network",
-    variables: { id },
-  });
-
-  return result;
-};
-
-export const useReviewRepository = (id) => {
   const variables = { id, first: 2 };
   const { data, loading, fetchMore, ...result } = useQuery(
-    REVIEW_REPOSITORIES,
+    SINGLE_REPOSITORIES,
     {
       fetchPolicy: "cache-and-network",
       variables,
     }
   );
-
+  console.log(data);
   const fetchReviewMore = () => {
     const canFetchMore =
-      !loading && data?.repository.reviews.pageInfo.hasNextPage;
+      !loading && data?.repository?.reviews?.pageInfo?.hasNextPage;
     if (!canFetchMore) return;
     fetchMore({
       variables: {
@@ -63,7 +54,8 @@ export const useReviewRepository = (id) => {
   };
 
   return {
-    reviews: data?.repository.reviews.edges,
+    repository: data?.repository,
+    reviews: data?.repository?.reviews?.edges,
     fetchMore: fetchReviewMore,
     loading,
     ...result,
