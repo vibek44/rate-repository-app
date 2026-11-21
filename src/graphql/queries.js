@@ -12,6 +12,19 @@ export const REPOSITORY_SCHEMA_TYPES = gql`
   }
 `;
 
+const REPOSITORY_FIELDS = gql`
+  fragment RepositoryFields on Repository {
+    id
+    fullName
+    description
+    language
+    ratingAverage
+    forksCount
+    reviewCount
+    stargazersCount
+    ownerAvatarUrl
+  }
+`;
 export const GET_REPOSITORIES = gql`
   query GetRepositories(
     $first: Int
@@ -30,15 +43,7 @@ export const GET_REPOSITORIES = gql`
       totalCount
       edges {
         node {
-          id
-          fullName
-          description
-          language
-          ratingAverage
-          forksCount
-          reviewCount
-          stargazersCount
-          ownerAvatarUrl
+          ...RepositoryFields
         }
         cursor
       }
@@ -49,21 +54,13 @@ export const GET_REPOSITORIES = gql`
       }
     }
   }
+  ${REPOSITORY_FIELDS}
 `;
 
 export const SINGLE_REPOSITORIES = gql`
   query ($id: ID!, $first: Int, $after: String) {
     repository(id: $id) {
-      id
-      fullName
-      description
-      language
-      ratingAverage
-      forksCount
-      reviewCount
-      stargazersCount
-      ownerAvatarUrl
-      url
+      ...RepositoryFields
       reviews(first: $first, after: $after) {
         edges {
           node {
@@ -86,6 +83,7 @@ export const SINGLE_REPOSITORIES = gql`
       }
     }
   }
+  ${REPOSITORY_FIELDS}
 `;
 
 export const GET_CURRENT_USER = gql`
