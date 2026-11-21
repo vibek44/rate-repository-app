@@ -52,7 +52,7 @@ export const GET_REPOSITORIES = gql`
 `;
 
 export const SINGLE_REPOSITORIES = gql`
-  query ($id: ID!) {
+  query ($id: ID!, $first: Int, $after: String) {
     repository(id: $id) {
       id
       fullName
@@ -64,15 +64,6 @@ export const SINGLE_REPOSITORIES = gql`
       stargazersCount
       ownerAvatarUrl
       url
-    }
-  }
-`;
-
-export const REVIEW_REPOSITORIES = gql`
-  query ($id: ID!, $first: Int, $after: String) {
-    repository(id: $id) {
-      id
-      fullName
       reviews(first: $first, after: $after) {
         edges {
           node {
