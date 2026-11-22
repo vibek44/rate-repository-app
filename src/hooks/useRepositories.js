@@ -1,12 +1,8 @@
 import { useQuery } from "@apollo/client/react";
-import {
-  GET_REPOSITORIES,
-  SINGLE_REPOSITORIES,
-  REVIEW_REPOSITORIES,
-} from "../graphql/queries";
+import { GET_REPOSITORIES, SINGLE_REPOSITORIES } from "../graphql/queries";
 
 const useRepositories = (orderBy, orderDirection, searchKeyword) => {
-  const variables = { first: 4, orderBy, orderDirection, searchKeyword };
+  const variables = { first: 7, orderBy, orderDirection, searchKeyword };
   const { data, loading, fetchMore, ...result } = useQuery(GET_REPOSITORIES, {
     fetchPolicy: "cache-and-network",
     variables,
@@ -40,7 +36,7 @@ export const useSingleRepository = (id) => {
       variables,
     }
   );
-  console.log(data);
+
   const fetchReviewMore = () => {
     const canFetchMore =
       !loading && data?.repository?.reviews?.pageInfo?.hasNextPage;
