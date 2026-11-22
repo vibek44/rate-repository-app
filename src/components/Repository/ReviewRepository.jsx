@@ -101,7 +101,7 @@ const ReviewRepository = ({ item, isPressable }) => {
             onPress={() => handleDeletePress(item.node.id)}
           >
             <Text color="primary" fontWeight="bold">
-              Delete Repository
+              Delete Review
             </Text>
           </Pressable>
         </View>
