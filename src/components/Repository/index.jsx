@@ -5,12 +5,8 @@ import Text from "../Text";
 import { spacing } from "../../theme";
 import RepositoryListContainer from "./RepositoryListContainer";
 import { PaperProvider } from "react-native-paper";
+import ErrorBoard from "../ErrorBoard";
 import { useDebounce } from "use-debounce";
-import {
-  CombinedGraphQLErrors,
-  ServerError,
-  ServerParseError,
-} from "@apollo/client/errors";
 
 const styles = StyleSheet.create({
   textContainer: {
@@ -52,38 +48,7 @@ const RepositoryList = () => {
     );
   }
   if (error) {
-    if (CombinedGraphQLErrors.is(error)) {
-      return (
-        <View style={styles.textContainer}>
-          {error.errors.map((err, index) => (
-            <Text color="Alert" key={index}>
-              {err.message}
-            </Text>
-          ))}
-        </View>
-      );
-    }
-    if (ServerError.is(error)) {
-      const { errors } = JSON.parse(error.bodyText);
-      return (
-        <View style={styles.textContainer}>
-          {errors.map((err, index) => (
-            <Text color="Alert" key={index}>
-              Server error :
-              {err.extensions.code === "GRAPHQL_VALIDATION_FAILED"
-                ? " validation"
-                : " Bad Request"}
-            </Text>
-          ))}
-        </View>
-      );
-    }
-
-    return (
-      <View style={styles.textContainer}>
-        <Text color="Alert">SomeThing happen! Check network connection! </Text>
-      </View>
-    );
+    return <ErrorBoard error={error} />;
   }
   return (
     <PaperProvider>
